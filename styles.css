@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+nav {
+  /* background: url("./assets/shop.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  margin: 0 2rem;
+
+  /* background-color: aquamarine; */
+}
+
+nav h2 a {
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+nav li {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+nav li a {
+  display: flex;
+  padding: 0.5rem;
+  /* background-color: #000; */
+  /* color: #fff; */
+  text-decoration: none;
+}
+
+.cart a {
+  /*     */
+  position: relative;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  cursor: pointer;
+}
+.cart ion-icon {
+  font-size: 2rem;
+}
+.cart span {
+  position: absolute;
+  left: 20px;
+  bottom: 8px;
+  font-size: 1rem;
+}
