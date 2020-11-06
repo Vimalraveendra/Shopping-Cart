@@ -6,6 +6,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  width: 100%;
 }
 
 nav {
@@ -61,4 +62,45 @@ nav li a {
   left: 20px;
   bottom: 8px;
   font-size: 1rem;
+}
+
+.menu-container {
+  /* width: 100vw; */
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.image {
+  position: relative;
+  margin: 1rem 1rem;
+
+  /* max-width: 80%; */
+}
+
+.image img {
+  position: relative;
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+}
+
+.add-cart {
+  /* border: 1px solid black;
+  padding: 0.5rem; */
+  position: absolute;
+  width: 100%;
+  /* bottom: 5rem;
+  left: 9rem; */
+  background-color: darkgray;
+  color: red;
+  text-decoration: none;
+  text-align: center;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
 }
