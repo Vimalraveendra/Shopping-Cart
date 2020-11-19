@@ -28,6 +28,8 @@ const products = [
 
 ]
 
+// whenever the page loads invoking the function to render
+// totalCartItem
 function onLoadingCartNumber(){
     let cartNumber = parseInt(localStorage.getItem('cartNumber'))
     if(cartNumber){
@@ -38,11 +40,16 @@ function onLoadingCartNumber(){
 onLoadingCartNumber();
 
 for(let i=0;i<cartEle.length;i++){
-    cartEle[i].addEventListener('click',addToCart)
+    cartEle[i].addEventListener('click',()=>{
+        addToCart(products[i])
+    })
 }
 
-function addToCart(e){
+function addToCart(e,item){
+    console.log('e',e)
+    console.log('item',item)
     e.preventDefault();
+    console.log("item",item)
    
     // the item we are getting from the localStorage is a string
     // inorder to convert string to a number we use parseInt    
