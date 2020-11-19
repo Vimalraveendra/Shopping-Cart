@@ -88,17 +88,22 @@ nav li a {
   background-position: center;
 }
 
+.image:hover .add-cart {
+  opacity: 1;
+}
+
 .add-cart {
-  /* border: 1px solid black;
-  padding: 0.5rem; */
+  opacity: 0;
+  padding: 0.6rem;
   position: absolute;
-  width: 100%;
-  /* bottom: 5rem;
-  left: 9rem; */
+  width: 80%;
+  bottom: 4rem;
+  left: 2rem;
   background-color: darkgray;
   color: red;
   text-decoration: none;
   text-align: center;
+  font-size: 1.25rem;
 }
 .title {
   display: flex;
