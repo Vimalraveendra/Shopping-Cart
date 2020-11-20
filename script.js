@@ -52,11 +52,11 @@ for(let i=0;i<cartEle.length;i++){
 
 function addToCart(e,item){
     e.preventDefault();
-   
-   
     // the item we are getting from the localStorage is a string
     // inorder to convert string to a number we use parseInt    
     let cartNumber = parseInt(localStorage.getItem('cartNumber'))
+ // here we checking if the cartNumber already exist in the cart
+ // if it exists we increment the cartNumber by 1.else set it to 1.
 
     if(cartNumber){
         localStorage.setItem('cartNumber',cartNumber+1)
@@ -73,8 +73,13 @@ function setItem(item){
 // checking items already persist in the local storage
 // and converting JSON format to a object format
 let cartItems = JSON.parse(localStorage.getItem('cartItem'))
-console.log("Cartitem",cartItems)
 if(cartItems !==null){
+    if(cartItems[item.tag]===undefined){
+        cartItems={
+            ...cartItems,
+            [item.tag]:item
+        }
+    }
 cartItems[item.tag].cartItem +=1;
 }else{
 item.cartItem =1;
