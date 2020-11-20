@@ -9,20 +9,25 @@ const products = [
         cartItem:0
     },
     {
-        name:'Grey T-Shirt',
-        tag:'grey t-shirt',
-        price:15,
+        name:'Black T-Shirt',
+        tag:'black t-shirt',
+        price:20,
         cartItem:0
     },
     {
-        name:'Grey T-Shirt',
-        tag:'grey t-shirt',
-        price:15,
+        name:'Black Hoddie',
+        tag:'black hoodie',
+        price:25,
         cartItem:0
     },  {
-        name:'Grey T-Shirt',
-        tag:'grey t-shirt',
-        price:15,
+        name:'Grey Hoddie',
+        tag:'grey hoodie',
+        price:23,
+        cartItem:0
+    },  {
+        name:'Brown Hoddie',
+        tag:'brown hoodie',
+        price:23,
         cartItem:0
     }
 
@@ -40,16 +45,14 @@ function onLoadingCartNumber(){
 onLoadingCartNumber();
 
 for(let i=0;i<cartEle.length;i++){
-    cartEle[i].addEventListener('click',()=>{
-        addToCart(products[i])
+    cartEle[i].addEventListener('click',(e)=>{
+        addToCart(e,products[i])
     })
 }
 
 function addToCart(e,item){
-    console.log('e',e)
-    console.log('item',item)
     e.preventDefault();
-    console.log("item",item)
+   
    
     // the item we are getting from the localStorage is a string
     // inorder to convert string to a number we use parseInt    
@@ -62,4 +65,24 @@ function addToCart(e,item){
     localStorage.setItem('cartNumber',1);
     cartItem.textContent = 1;
     }
+
+    setItem(item)
+}
+
+function setItem(item){
+// checking items already persist in the local storage
+// and converting JSON format to a object format
+let cartItems = JSON.parse(localStorage.getItem('cartItem'))
+console.log("Cartitem",cartItems)
+if(cartItems !==null){
+cartItems[item.tag].cartItem +=1;
+}else{
+item.cartItem =1;
+cartItems = {
+     [item.tag]:item
+ }
+
+}
+localStorage.setItem('cartItem',JSON.stringify(cartItems))
+ 
 }

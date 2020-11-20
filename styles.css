@@ -59,8 +59,8 @@ nav li a {
 }
 .cart span {
   position: absolute;
-  left: 20px;
-  bottom: 8px;
+  left: 1.3rem;
+  bottom: 0.5rem;
   font-size: 0.9rem;
   font-weight: 700;
 }
