@@ -47,6 +47,7 @@ onLoadingCartNumber();
 for(let i=0;i<cartEle.length;i++){
     cartEle[i].addEventListener('click',(e)=>{
         addToCart(e,products[i])
+        totalPrice(products[i])
     })
 }
 
@@ -90,4 +91,19 @@ cartItems = {
 }
 localStorage.setItem('cartItem',JSON.stringify(cartItems))
  
+}
+
+function totalPrice(item){
+    console.log("item",item)
+    let cartPrice = localStorage.getItem('totalPrice')
+
+    
+    if(cartPrice !==null){
+        cartPrice = parseInt(cartPrice)
+        localStorage.setItem('totalPrice',cartPrice+item.price)
+    }else{
+        localStorage.setItem('totalPrice',item.price)
+    }
+
+  
 }
