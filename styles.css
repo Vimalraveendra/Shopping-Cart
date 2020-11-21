@@ -110,3 +110,28 @@ nav li a {
   display: flex;
   justify-content: space-between;
 }
+
+/* ----cartItem html---- */
+
+.items-container {
+  max-width: 650px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.item-header {
+  max-width: 650px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+h5 {
+  text-transform: uppercase;
+}
