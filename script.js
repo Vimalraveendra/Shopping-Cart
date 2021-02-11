@@ -105,5 +105,5 @@ function totalPrice(item){
         localStorage.setItem('totalPrice',item.price)
     }
 
-  
+
 }
