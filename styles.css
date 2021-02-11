@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  width: 100%;
+  min-width: 100vh;
 }
 
 header {
@@ -49,16 +49,12 @@ nav li {
   align-items: center;
   padding: 0.25rem 0.5rem;
   font-size: 1.35rem;
-  /* margin-top: 0.5rem; */
 }
 nav li span {
   padding-left: 5px;
 }
 nav li a {
   display: flex;
-  /* padding: 0.5rem; */
-  /* background-color: #000;
-  color: #fff; */
   text-decoration: none;
 }
 
@@ -79,8 +75,6 @@ nav li a {
 }
 
 .menu-container {
-  /* width: 100vw; */
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -90,16 +84,15 @@ nav li a {
 .image {
   position: relative;
   margin: 1rem 1rem;
-
-  /* max-width: 80%; */
 }
 
 .image img {
   position: relative;
-  width: 100%;
-
-  background-size: cover;
-  background-position: center;
+  max-width: 300px;
+  max-height: 300px;
+  border: 1px solid rgb(228, 227, 227);
+  background-color: rgb(218, 214, 218);
+  object-fit: cover;
 }
 
 .image:hover .add-cart {
