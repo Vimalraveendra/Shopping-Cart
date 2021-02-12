@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  min-width: 100vh;
+  min-height: 100vh;
 }
 
 header {
@@ -14,12 +14,8 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 120px;
+  height: 80px;
   position: relative;
-}
-.nav-container {
-  position: absolute;
-  z-index: 1;
 }
 
 nav {
@@ -69,7 +65,7 @@ nav li a {
 .cart span {
   position: absolute;
   top: 0.65rem;
-  left: 0.4rem;
+  left: 0.45rem;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -80,22 +76,27 @@ nav li a {
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
+  max-width: 100%;
+}
+.image-container {
+  position: relative;
+  margin: 1rem;
+  text-align: center;
 }
 .image {
-  position: relative;
-  margin: 1rem 1rem;
-}
-
-.image img {
-  position: relative;
-  max-width: 300px;
-  max-height: 300px;
-  border: 1px solid rgb(228, 227, 227);
+  width: 300px;
   background-color: rgb(218, 214, 218);
   object-fit: cover;
+  border-radius: 1rem;
+}
+.image-container img {
+  max-width: 300px;
+  max-height: 300px;
+  padding: 0;
+  margin: 0;
 }
 
-.image:hover .add-cart {
+.image-container:hover .add-cart {
   opacity: 1;
 }
 
@@ -104,13 +105,18 @@ nav li a {
   padding: 0.6rem;
   position: absolute;
   width: 80%;
-  bottom: 4rem;
-  left: 2rem;
+  bottom: 4.2rem;
+  left: 1.8rem;
   background-color: darkgray;
   color: red;
   text-decoration: none;
   text-align: center;
   font-size: 1.25rem;
+  text-transform: capitalize;
+}
+.add-cart:hover {
+  background-color: rgb(121, 118, 118);
+  color: #fff;
 }
 .title {
   display: flex;

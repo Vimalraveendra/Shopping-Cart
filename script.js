@@ -1,5 +1,6 @@
 let cartEle = document.querySelectorAll('.add-cart');
 let cartItem = document.querySelector('.cart span'); 
+console.log("cart",cartEle)
 
 const products = [
     {
@@ -33,16 +34,7 @@ const products = [
 
 ]
 
-// whenever the page loads invoking the function to render
-// totalCartItem
-function onLoadingCartNumber(){
-    let cartNumber = parseInt(localStorage.getItem('cartNumber'))
-    if(cartNumber){
-        cartItem.textContent = cartNumber; 
-    }
-} 
 
-onLoadingCartNumber();
 
 for(let i=0;i<cartEle.length;i++){
     cartEle[i].addEventListener('click',(e)=>{
@@ -50,6 +42,18 @@ for(let i=0;i<cartEle.length;i++){
         totalPrice(products[i])
     })
 }
+
+// whenever the page loads invoking the function to render
+// totalCartItem from local storage
+function onLoadGetCartNumbers(){
+    let cartNumber = parseInt(localStorage.getItem('cartNumber'))
+    if(cartNumber){
+        cartItem.textContent = cartNumber; 
+    }
+} 
+
+onLoadGetCartNumbers();
+
 
 function addToCart(e,item){
     e.preventDefault();
@@ -67,10 +71,10 @@ function addToCart(e,item){
     cartItem.textContent = 1;
     }
 
-    setItem(item)
+    setItemToLs(item)
 }
 
-function setItem(item){
+function setItemToLs(item){
 // checking items already persist in the local storage
 // and converting JSON format to a object format
 let cartItems = JSON.parse(localStorage.getItem('cartItem'))
