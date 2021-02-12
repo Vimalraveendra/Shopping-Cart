@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -24,8 +28,6 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin: 0 2rem;
-
-  /* background-color: aquamarine; */
 }
 
 nav h2 {
@@ -126,7 +128,7 @@ nav li a {
 /* ----cartItem html---- */
 
 .items-container {
-  max-width: 650px;
+  width: 650px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -136,14 +138,16 @@ nav li a {
 }
 
 .item-header {
-  max-width: 650px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid lightgray;
+  font-family: inherit;
 }
 
 h5 {
+  font-size: 1.15rem;
   text-transform: uppercase;
+  margin: 0;
 }
