@@ -149,13 +149,15 @@ function showCartItems(){
             <div class="product">
             <ion-icon name="close-outline"></ion-icon>
             <img src="./assets/${item.tag}.png", alt="red-shirt">
-            <h2 class="price">${item.name}</h2>
+            <h2 class="name">${item.name}</h2>
             </div>
-            <div class="product">
-            <ion-icon name="close-outline"></ion-icon>
-            <img src="./assets/${item.tag}.png", alt="red-shirt">
-            <h2 class="price">${item.name}</h2>
-            </div>
+            <div class="price">${item.price}</div>  
+            <div class="quantity">
+            <ion-icon name="caret-forward-circle-outline"></ion-icon>
+            ${item.cartItem}
+            <ion-icon name="caret-back-circle-outline"></ion-icon>
+            </div>  
+         
           `
 
       })  
