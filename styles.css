@@ -153,14 +153,18 @@ nav li a {
 
 .items {
   width: 100%;
-  /* display: flex; */
+  display: flex;
+  margin: 1rem 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
 }
 .product {
   display: flex;
   align-items: center;
-  margin: 1rem 0;
+  /* margin: 1rem 0;
   border-bottom: 1px solid #eee;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.75rem; */
+  width: 40%;
 }
 .product ion-icon {
   color: red;
@@ -177,6 +181,20 @@ nav li a {
   margin: 0 0.5rem;
 }
 
-.product .price {
+.product .name {
   font-size: 0.85rem;
+}
+
+.price {
+  color: red;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  width: 10%;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
 }
