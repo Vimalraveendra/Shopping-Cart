@@ -1,6 +1,7 @@
 const cartEle = document.querySelectorAll('.add-cart');
 const cartItemEl = document.querySelector('.cart span'); 
 const itemsEl = document.getElementById('items')
+const itemsContainerEl = document.querySelector('.items-container')
 console.log("cart",itemsEl)
 
 const products = [
@@ -84,10 +85,10 @@ function addToCart(item){
 
     if(cartNumber){
         localStorage.setItem('cartNumber',cartNumber+1)
-        cartItem.textContent = cartNumber+1;
+        cartItemEl.textContent = cartNumber+1;
     }else{
     localStorage.setItem('cartNumber',1);
-    cartItem.textContent = 1;
+    cartItemEl.textContent = 1;
     }
 
     setItemToLs(item)
@@ -121,7 +122,7 @@ localStorage.setItem('cartItem',JSON.stringify(cartItems))
 }
 
 function totalPrice(item){
-    console.log("item",item)
+    
     let cartPrice = localStorage.getItem('totalPrice')
     console.log("cartPrice", cartPrice)
     //  if cartPrice already in our local storage
@@ -138,7 +139,28 @@ function totalPrice(item){
 function showCartItems(){
     let cartItems = localStorage.getItem('cartItem')
     cartItems= JSON.parse(cartItems)
-    console.log('cart',cartItems)
+    console.log("item1  ",cartItems)
+  
+    if(cartItems && itemsContainerEl){  
+        
+      Object.values(cartItems).map(item=>{
+          //  to add more cartItems
+            itemsEl.innerHTML += `
+            <div class="product">
+            <ion-icon name="close-outline"></ion-icon>
+            <img src="./assets/${item.tag}.png", alt="red-shirt">
+            <h2 class="price">${item.name}</h2>
+            </div>
+            <div class="product">
+            <ion-icon name="close-outline"></ion-icon>
+            <img src="./assets/${item.tag}.png", alt="red-shirt">
+            <h2 class="price">${item.name}</h2>
+            </div>
+          `
+
+      })  
+       
+    }
 }
 
 showCartItems()
