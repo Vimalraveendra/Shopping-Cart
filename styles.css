@@ -145,9 +145,38 @@ nav li a {
   border-bottom: 1px solid lightgray;
   font-family: inherit;
 }
-
-h5 {
+.item h5 {
   font-size: 1.15rem;
   text-transform: uppercase;
   margin: 0;
+}
+
+.items {
+  width: 100%;
+  /* display: flex; */
+}
+.product {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+}
+.product ion-icon {
+  color: red;
+  font-size: 25px;
+  cursor: pointer;
+  padding-left: 0.25rem;
+}
+
+.product img {
+  margin: 0;
+  width: 80px;
+  height: 80px;
+  background-color: rgb(218, 214, 218);
+  margin: 0 0.5rem;
+}
+
+.product .price {
+  font-size: 0.85rem;
 }
