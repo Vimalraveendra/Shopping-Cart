@@ -1,7 +1,8 @@
-const cartEle = document.querySelectorAll('.add-cart');
+
 const cartItemEl = document.querySelector('.cart span'); 
 const itemsEl = document.getElementById('items')
-const itemsContainerEl = document.querySelector('.items-container')
+const itemsContainerEl = document.querySelector('.items-container');
+const menuContainerEL = document.querySelector('.menu-container')
 
 
 const products = [
@@ -24,7 +25,7 @@ const products = [
         cartItem:0
     },  {
         name:'Red T-Shirt',
-        tag:'red t-shirt ',
+        tag:'red t-shirt',
         price:20,
         cartItem:0
     },  {
@@ -55,6 +56,29 @@ const products = [
 
 ]
 
+// dynamically render the index.html items when the page loads
+
+function renderMenuContainer(products){
+    
+    products.forEach(product => {
+    // only render in the index dot html page
+        if(menuContainerEL){
+       menuContainerEL.innerHTML +=`
+       <div class="image-container">
+        <div class="image">
+            <img src="./assets/${product.tag}.png" alt="${product.name}">
+        </div>
+        <div class='title'>
+          <h3>${product.name}</h3>
+          <h4>${`$`+product.price}</h4>
+      </div>
+        <button class="add-cart">Add to cart</button>
+      </div> 
+  `  
+        }
+    });
+    
+    const cartEle = document.querySelectorAll('.add-cart');
 
 // iterating over the array of cartElm(in our case there are 8 cartItem button)
 for(let i=0;i<cartEle.length;i++){
@@ -63,6 +87,12 @@ for(let i=0;i<cartEle.length;i++){
         totalPrice(products[i])
     })
 }
+    
+}
+
+renderMenuContainer(products);
+
+
 
 // whenever the page loads, invoking the function to render
 // totalCartItem from local storage
@@ -77,6 +107,7 @@ onLoadGetCartNumbers();
 
 
 function addToCart(item){
+  
     // the item we are getting from the localStorage is a string
     // inorder to convert string to a number we use parseInt    
     let cartNumber = parseInt(localStorage.getItem('cartNumber'))
@@ -124,10 +155,8 @@ localStorage.setItem('cartItem',JSON.stringify(cartItems))
 function totalPrice(item){
     
     let cartPrice = localStorage.getItem('totalPrice')
-    console.log("cartPrice", cartPrice)
     //  if cartPrice already in our local storage
     if(cartPrice !==null){
-        console.log("cart",cartPrice)
         cartPrice = parseInt(cartPrice)
         localStorage.setItem('totalPrice',cartPrice+item.price)
     }else{
