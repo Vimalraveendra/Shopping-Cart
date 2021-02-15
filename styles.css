@@ -27,7 +27,7 @@ nav {
   /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
-  margin: 0 2rem;
+  margin: 1rem 2rem;
 }
 
 nav h2 {
@@ -115,6 +115,7 @@ nav li a {
   text-align: center;
   font-size: 1.25rem;
   text-transform: capitalize;
+  border: none;
 }
 .add-cart:hover {
   background-color: rgb(121, 118, 118);
@@ -127,32 +128,38 @@ nav li a {
 
 /* ----cartItem html---- */
 
+nav h2 a {
+  text-decoration: none;
+}
+
 .items-container {
   width: 650px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
   margin: 0 auto;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .item-header {
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   border-bottom: 1px solid lightgray;
   font-family: inherit;
 }
-.item h5 {
-  font-size: 1.15rem;
+
+.item-header .product {
+  margin-left: 3rem;
+}
+.item-header h5 {
+  font-size: 1rem;
   text-transform: uppercase;
   margin: 0;
 }
 
 .items {
   width: 100%;
+}
+.products {
   display: flex;
   margin: 1rem 0;
   border-bottom: 1px solid #eee;
@@ -161,22 +168,20 @@ nav li a {
 .product {
   display: flex;
   align-items: center;
-  /* margin: 1rem 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.75rem; */
-  width: 40%;
+  width: 35%;
+  margin-left: 1rem;
 }
 .product ion-icon {
   color: red;
-  font-size: 25px;
+  font-size: 20px;
   cursor: pointer;
   padding-left: 0.25rem;
 }
 
 .product img {
   margin: 0;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: rgb(218, 214, 218);
   margin: 0 0.5rem;
 }
@@ -186,15 +191,26 @@ nav li a {
 }
 
 .price {
-  color: red;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  width: 10%;
+  justify-content: center;
+  width: 20%;
 }
 .quantity {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  width: 25%;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+.items .quantity ion-icon {
+  margin: 0 0.5rem;
+  font-size: 20px;
 }

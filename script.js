@@ -2,7 +2,7 @@ const cartEle = document.querySelectorAll('.add-cart');
 const cartItemEl = document.querySelector('.cart span'); 
 const itemsEl = document.getElementById('items')
 const itemsContainerEl = document.querySelector('.items-container')
-console.log("cart",itemsEl)
+
 
 const products = [
     {
@@ -139,15 +139,16 @@ function totalPrice(item){
 function showCartItems(){
     let cartItems = localStorage.getItem('cartItem')
     cartItems= JSON.parse(cartItems)
-    console.log("item1  ",cartItems)
+   
   
     if(cartItems && itemsContainerEl){  
-        
+
       Object.values(cartItems).map(item=>{
           //  to add more cartItems
             itemsEl.innerHTML += `
+            <div class ="products">
             <div class="product">
-            <ion-icon name="close-outline"></ion-icon>
+            <ion-icon name="close-circle-outline"></ion-icon>
             <img src="./assets/${item.tag}.png", alt="red-shirt">
             <h2 class="name">${item.name}</h2>
             </div>
@@ -157,6 +158,8 @@ function showCartItems(){
             ${item.cartItem}
             <ion-icon name="caret-back-circle-outline"></ion-icon>
             </div>  
+            <div class="total">${item.cartItem* item.price}</div>
+            </div>
          
           `
 
