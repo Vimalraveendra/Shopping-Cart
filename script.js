@@ -70,7 +70,7 @@ function renderMenuContainer(products){
         </div>
         <div class='title'>
           <h3>${product.name}</h3>
-          <h4>${`$`+product.price}</h4>
+          <h4>$${product.price}</h4>
       </div>
         <button class="add-cart">Add to cart</button>
       </div> 
@@ -168,7 +168,8 @@ function totalPrice(item){
 function showCartItems(){
     let cartItems = localStorage.getItem('cartItem')
     cartItems= JSON.parse(cartItems)
-   
+   // grabing the total price of the cartItem
+    let cartPrice = localStorage.getItem('totalPrice')
   
     if(cartItems && itemsContainerEl){  
 
@@ -181,18 +182,25 @@ function showCartItems(){
             <img src="./assets/${item.tag}.png", alt="red-shirt">
             <h2 class="name">${item.name}</h2>
             </div>
-            <div class="price">${item.price}</div>  
+            <div class="price">$${item.price}</div>  
             <div class="quantity">
             <ion-icon name="caret-forward-circle-outline"></ion-icon>
             ${item.cartItem}
             <ion-icon name="caret-back-circle-outline"></ion-icon>
             </div>  
-            <div class="total">${item.cartItem* item.price}</div>
+            <div class="total">$${item.cartItem* item.price}</div>
             </div>
          
           `
 
       })  
+      itemsContainerEl.innerHTML +=`
+      <div class="totalPriceContainer">
+       <h4 class="totalTitle">Total Price</h4>
+       <h4 class="totalPrice">$${cartPrice},00</h4>
+      </div>
+      `
+     
        
     }
 }
