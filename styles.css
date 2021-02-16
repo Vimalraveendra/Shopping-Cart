@@ -148,7 +148,7 @@ nav h2 a {
 }
 
 .item-header .product {
-  margin-left: 3rem;
+  margin-left: 2rem;
 }
 .item-header h5 {
   font-size: 1rem;
@@ -213,4 +213,23 @@ nav h2 a {
 .items .quantity ion-icon {
   margin: 0 0.5rem;
   font-size: 20px;
+}
+
+/* total price */
+
+.totalPriceContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.totalTitle {
+  padding: 0 2rem;
+  margin: 0;
+}
+.totalPrice {
+  padding: 0 2rem;
+  margin: 0;
 }
