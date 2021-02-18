@@ -6,50 +6,53 @@ const menuContainerEL = document.querySelector('.menu-container')
 
 
 const products = [
-    {
+    {   id:1,
         name:'Black T-Shirt',
         tag:'black t-shirt',
         price:12,
-        cartItem:0
+        cartNo:0
     },
-    {
+    {   id:2,
         name:'Grey T-Shirt',
         tag:'grey t-shirt',
         price:15,
-        cartItem:0
+        cartNo:0
     },
-    {
+    {   id:3,
         name:'Black Shirt',
         tag:'black shirt',
         price:25,
-        cartItem:0
+        cartNo:0
     },  {
+        id:4,
         name:'Red T-Shirt',
         tag:'red t-shirt',
         price:20,
-        cartItem:0
+        cartNo:0
     },  {
+        id:5,
         name:'Blue Shirt',
         tag:'blue shirt',
         price:24,
-        cartItem:0
+        cartNo:0
     },
-    {
+    {   id:6,
         name:'Stripe Shirt',
         tag:'stripe shirt',
         price:25,
-        cartItem:0
+        cartNo:0
     },  {
+        id:7,
         name:'White T-Shirt',
         tag:'white t-shirt',
         price:22,
-        cartItem:0
+        cartNo:0
     },
-    {
+    {   id:8,
         name:'Check Shirt',
         tag:'check shirt',
         price:26,
-        cartItem:0
+        cartNo:0
     },
     
 
@@ -62,7 +65,7 @@ function renderMenuContainer(products){
     
     products.forEach(product => {
     // only render in the index dot html page
-        if(menuContainerEL){
+    if(menuContainerEL){
        menuContainerEL.innerHTML +=`
        <div class="image-container">
         <div class="image">
@@ -77,6 +80,8 @@ function renderMenuContainer(products){
   `  
         }
     });
+
+ 
     
     const cartEle = document.querySelectorAll('.add-cart');
 
@@ -122,39 +127,84 @@ function addToCart(item){
     cartItemEl.textContent = 1;
     }
 
+   
+
     setItemToLs(item)
 }
 
 function setItemToLs(item){
+
 // checking items already persist in the local storage
 // and converting JSON format to a object format
 let cartItems = JSON.parse(localStorage.getItem('cartItem'))
 
-//  if cartItems already in our local storage
-if(cartItems !==null){
-    if(cartItems[item.tag]===undefined){
-        cartItems={
-            ...cartItems,
-            [item.tag]:item
-        }
-    }
-cartItems[item.tag].cartItem +=1;
-}else{
-item.cartItem =1;
-cartItems = {
-     [item.tag]:item
- }
 
+let items = []
+console.log("items",items)
+
+
+if(cartItems!==null){
+
+    cartItems.map(product=>{
+      
+        // when we add new item other than first item we need to 
+        // check cartNo is 0. In that case we need to update cartNo
+        // to 1 & push that item to cartItems,but holding the previous
+        //  item
+   
+         if(item.id===product.id){
+            item.cartNo = product.cartNo+1;
+        }else{
+             if(item.cartNo===0){
+                item.cartNo= 1;
+             }
+             items.push(product)    
+        }           
+    })
+    items.push(item)
+    
 }
+// initially we are setting the item cartNo to 1. & 
+// updating the  item and pushing inside the array
+else{
+    item.cartNo=1;
+    items.push(item)
+}
+   
 //  converting object format to JSON format & 
 // setting the items to the local storage
-localStorage.setItem('cartItem',JSON.stringify(cartItems))
+    
+localStorage.setItem('cartItem',JSON.stringify(items))
+
+
+
+//  if cartItems already in our local storage
+// if(cartItems !==null){
+//     if(cartItems[item.tag]===undefined){
+//         cartItems={
+//             ...cartItems,
+//             [item.tag]:item
+//         }
+//     }
+// cartItems[item.tag].cartItem +=1;
+// }else{
+// item.cartItem =1;
+// cartItems = {
+//      [item.tag]:item
+//  }
+// }
+
+//  converting object format to JSON format & 
+// setting the items to the local storage
+// localStorage.setItem('cartItem',JSON.stringify(cartItems))
  
 }
 
 function totalPrice(item){
     
     let cartPrice = localStorage.getItem('totalPrice')
+
+    if(cartPrice!==undefined){
     //  if cartPrice already in our local storage
     if(cartPrice !==null){
         cartPrice = parseInt(cartPrice)
@@ -164,35 +214,36 @@ function totalPrice(item){
     }
  
 }
+}
 
 function showCartItems(){
     let cartItems = localStorage.getItem('cartItem')
     cartItems= JSON.parse(cartItems)
+    
    // grabing the total price of the cartItem
     let cartPrice = localStorage.getItem('totalPrice')
-  
+      itemsEl.innerHTML="";
     if(cartItems && itemsContainerEl){  
-
-      Object.values(cartItems).map(item=>{
+   console.log("cartItems",cartItems)
+      cartItems.map(item=>{
           //  to add more cartItems
             itemsEl.innerHTML += `
             <div class ="products">
             <div class="product">
-            <ion-icon name="close-circle-outline"></ion-icon>
+           <ion-icon name="close-circle-outline" class="close" onclick=removeCartItems(event)></ion-icon>
             <img src="./assets/${item.tag}.png", alt="red-shirt">
             <h2 class="name">${item.name}</h2>
             </div>
             <div class="price">$${item.price}</div>  
             <div class="quantity">
             <ion-icon name="caret-forward-circle-outline"></ion-icon>
-            ${item.cartItem}
+            ${item.cartNo}
             <ion-icon name="caret-back-circle-outline"></ion-icon>
             </div>  
-            <div class="total">$${item.cartItem* item.price}</div>
-            </div>
-         
+            <div class="total">$${item.cartNo*item.price}</div>
+            </div> 
           `
-
+        
       })  
       itemsContainerEl.innerHTML +=`
       <div class="totalPriceContainer">
@@ -200,9 +251,60 @@ function showCartItems(){
        <h4 class="totalPrice">$${cartPrice},00</h4>
       </div>
       `
-     
-       
     }
+    
+
 }
 
+
+function removeCartItems(event){
+    let items = [];
+    let element =event.target.parentNode.children[2].textContent;
+    let cartItems = localStorage.getItem('cartItem')
+    cartItems= JSON.parse(cartItems)
+  let cartPrice = localStorage.getItem('totalPrice')
+    event.target.parentNode.parentNode.remove();
+    cartItems.forEach(item=>{
+        if(item.name!==element){
+            items.push(item)
+        
+            // totalPrice(item)
+            // localStorage.setItem('cartItem',JSON.stringify(items))
+  
+            // localStorage.setItem('totalPrice',JSON.stringify(item.price))
+        //   showCartItems()
+        //   onLoadGetCartNumbers();
+        localStorage.setItem('totalPrice',JSON.stringify(item.price))
+        
+        }
+        localStorage.setItem('cartItem',JSON.stringify(items))
+        
+        localStorage.setItem('cartNumber',items.length)
+      console.log("itemsp",items)
+     
+    
+    })
+}
+  
+
+    
+    function totalPrice(item){
+       
+        let cartPrice = localStorage.getItem('totalPrice')
+       
+        //  if cartPrice already in our local storage
+        if(cartPrice !==null){
+            cartPrice = parseInt(cartPrice)
+            localStorage.setItem('totalPrice',cartPrice+item.price)
+        }else{
+            localStorage.setItem('totalPrice',item.price)
+        }
+     
+    }
+    
+
 showCartItems()
+
+
+
+
