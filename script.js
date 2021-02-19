@@ -105,7 +105,7 @@ renderMenuContainer(products);
 // totalCartItem from local storage
 function onLoadGetCartNumbers(){
     let cartNumber = parseInt(localStorage.getItem('cartNumber'))
-    if(cartNumber){
+    if(cartNumber>=0){
         cartItemEl.textContent = cartNumber; 
     }
 } 
@@ -258,7 +258,7 @@ function showCartItems(){
       itemsContainerEl.innerHTML +=`
       <div class="totalPriceContainer">
        <h4 class="totalTitle">Total Price</h4>
-       <h4 class="totalPrice">$${cartPrice},00</h4>
+       <h4 class="totalPrice">$${cartPrice>0?`${cartPrice}`:0},00</h4>
       </div>
       `
     }
@@ -325,13 +325,20 @@ showCartItems()
 function updateQuantity(id,event){
     let items = [];
     let icon = event.target.name;
+    let cartNumber = parseInt(localStorage.getItem('cartNumber'))
     let cartItems = JSON.parse(localStorage.getItem('cartItem'))
+    let cartPrice = parseInt(localStorage.getItem('totalPrice'))
     cartItems.forEach(item=>{
-        if(item.id===id && icon ==='caret-forward-circle-outline'){
+        if(item.id===id && icon ==='caret-forward-circle-outline' && item.cartNo>=0){
             item.cartNo +=1;
+            localStorage.setItem('cartNumber',JSON.stringify(cartNumber +1))
+            localStorage.setItem('totalPrice',JSON.stringify(cartPrice +item.price))
+            
         }
-        if(item.id===id && icon ==='caret-back-circle-outline'){
+        if(item.id===id && icon ==='caret-back-circle-outline' && item.cartNo>0){
             item.cartNo -=1;
+            localStorage.setItem('cartNumber',JSON.stringify(cartNumber -1))
+            localStorage.setItem('totalPrice',JSON.stringify(cartPrice -item.price))
            
         }   
         items.push(item)
@@ -344,8 +351,6 @@ function updateQuantity(id,event){
         localStorage.setItem('cartItem',JSON.stringify(items))
         
         window.location.reload()
-
-        console.log("cartitemsss",cartItems)
     
 }
 
