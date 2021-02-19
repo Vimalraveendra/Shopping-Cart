@@ -133,6 +133,7 @@ function addToCart(item){
 }
 
 function setItemToLs(item){
+    console.log("item",item)
 
 // checking items already persist in the local storage
 // and converting JSON format to a object format
@@ -140,10 +141,11 @@ let cartItems = JSON.parse(localStorage.getItem('cartItem'))
 
 
 let items = []
-console.log("items",items)
 
 
-if(cartItems!==null){
+//  checking the condition if the item is not present in 
+// the local storage and cartItem length is greater than zero.
+if(cartItems!==null && cartItems.length>0){
 
     cartItems.map(product=>{
       
@@ -222,9 +224,12 @@ function showCartItems(){
     
    // grabing the total price of the cartItem
     let cartPrice = localStorage.getItem('totalPrice')
-      itemsEl.innerHTML="";
-    if(cartItems && itemsContainerEl){  
-   console.log("cartItems",cartItems)
+    
+    
+
+    if(cartItems && itemsContainerEl){ 
+        // clearing the the container    
+        itemsEl.innerHTML="";
       cartItems.map(item=>{
           //  to add more cartItems
             itemsEl.innerHTML += `
@@ -243,7 +248,7 @@ function showCartItems(){
             <div class="total">$${item.cartNo*item.price}</div>
             </div> 
           `
-        
+    
       })  
       itemsContainerEl.innerHTML +=`
       <div class="totalPriceContainer">
@@ -260,27 +265,28 @@ function showCartItems(){
 function removeCartItems(event){
     let items = [];
     let element =event.target.parentNode.children[2].textContent;
-    let cartItems = localStorage.getItem('cartItem')
-    cartItems= JSON.parse(cartItems)
-  let cartPrice = localStorage.getItem('totalPrice')
+    let cartItems = JSON.parse(localStorage.getItem('cartItem'))
+    let cartPrice = localStorage.getItem('totalPrice')
+    // when we click on the delete icon, removing that element
     event.target.parentNode.parentNode.remove();
+    // iterating through the cartItems received from the local
+    // storage & filtering the item based on the condition & pushing
+    //  that item into items array
     cartItems.forEach(item=>{
         if(item.name!==element){
             items.push(item)
-        
-            // totalPrice(item)
-            // localStorage.setItem('cartItem',JSON.stringify(items))
-  
-            // localStorage.setItem('totalPrice',JSON.stringify(item.price))
-        //   showCartItems()
-        //   onLoadGetCartNumbers();
-        localStorage.setItem('totalPrice',JSON.stringify(item.price))
-        
+        }else{
+        // reducing the total price whenever an item is removed from the 
+        // localStorage
+        localStorage.setItem('totalPrice',JSON.stringify(cartPrice -(item.cartNo*item.price)))
+
         }
+        // updating the localStorage with new items & cartNumber
         localStorage.setItem('cartItem',JSON.stringify(items))
-        
         localStorage.setItem('cartNumber',items.length)
-      console.log("itemsp",items)
+        // reloading the changes that happened to the localStorage
+        // & implementing that on the webpage.
+        window.location.reload()
      
     
     })
