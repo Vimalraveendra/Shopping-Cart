@@ -133,7 +133,7 @@ nav h2 a {
 }
 
 .items-container {
-  width: 650px;
+  width: 750px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -232,4 +232,31 @@ nav h2 a {
 .totalPrice {
   padding: 0 2rem;
   margin: 0;
+}
+
+@media screen and (max-width: 400px) {
+  /* body {
+    background-color: lightgreen;
+  } */
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 2rem;
+  }
+
+  .image {
+    width: 250px;
+  }
+  .image-container img {
+    max-width: 250px;
+    max-height: 250px;
+  }
+  nav li {
+    font-size: 1.15rem;
+  }
+  nav h2 {
+    font-size: 1.25rem;
+  }
 }
