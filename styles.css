@@ -79,6 +79,7 @@ nav li a {
   align-items: center;
   margin-top: 1rem;
   max-width: 100%;
+  position: relative;
 }
 .image-container {
   position: relative;
@@ -210,9 +211,9 @@ nav h2 a {
   width: 20%;
 }
 
-.items .quantity ion-icon {
-  margin: 0 0.5rem;
-  font-size: 20px;
+.quantity ion-icon {
+  margin: 0 0.4rem;
+  font-size: 1.2rem;
 }
 
 /* total price */
@@ -232,6 +233,73 @@ nav h2 a {
 .totalPrice {
   padding: 0 2rem;
   margin: 0;
+}
+
+/* drop down */
+.dropdown-container {
+  background-color: #fff;
+  box-shadow: 2px 2px 5px #000;
+  padding: 0.5rem;
+  position: absolute;
+  top: 3.3rem;
+  right: 2.5rem;
+  width: 320px;
+  height: 350px;
+  opacity: 0;
+  margin-bottom: 1rem;
+}
+.dropdown-container:hover {
+  opacity: 1;
+}
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.dropdown-image {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dropdown-image img {
+  width: 60px;
+  height: 60px;
+}
+.dropdown-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+}
+.dropdown-title h3,
+.dropdown-title h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.remove {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+}
+.remove ion-icon {
+  font-size: 1.2rem;
+  color: red;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 0.3rem 0;
+  font-size: 1rem;
+  margin-bottom: auto 0;
+  margin-top: 12rem;
+}
+.total-amount {
+  border-top: 1px solid #ddd;
+  margin-top: 0.45rem;
 }
 
 @media screen and (max-width: 400px) {
