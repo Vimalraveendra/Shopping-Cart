@@ -251,10 +251,13 @@ nav h2 a {
 .dropdown-container:hover {
   opacity: 1;
 }
+
 .dropdown {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid #eee;
+  padding: 0.35rem 0;
 }
 .dropdown-image {
   width: 25%;
@@ -283,7 +286,6 @@ nav h2 a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
 }
 .remove ion-icon {
   font-size: 1.2rem;
@@ -295,7 +297,8 @@ nav h2 a {
   padding: 0.3rem 0;
   font-size: 1rem;
   margin-bottom: auto 0;
-  margin-top: 12rem;
+  vertical-align: bottom;
+  overflow: scroll;
 }
 .total-amount {
   border-top: 1px solid #ddd;
