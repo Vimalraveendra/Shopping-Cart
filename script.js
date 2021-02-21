@@ -67,19 +67,20 @@ function renderMenuContainer(products){
     // only render in the index dot html page
     if(menuContainerEL){
        menuContainerEL.innerHTML +=`
-       <div class="image-container">
-        <div class="image">
-            <img src="./assets/${product.tag}.png" alt="${product.name}">
+        <div class="image-container">
+            <div class="image">
+                <img src="./assets/${product.tag}.png" alt="${product.name}">
+            </div>
+            <div class='title'>
+            <h3>${product.name}</h3>
+            <h4>$${product.price}</h4>
         </div>
-        <div class='title'>
-          <h3>${product.name}</h3>
-          <h4>$${product.price}</h4>
-      </div>
         <button class="add-cart">Add to cart</button>
+        
       </div> 
       
   ` 
-        }
+}
        
     });
 
