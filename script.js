@@ -1,8 +1,14 @@
 
-const cartItemEl = document.querySelector('.cart span'); 
+const cartItemNoEl = document.querySelector('.cart span'); 
+const cartItemEl = document.querySelector('.cart')
 const itemsEl = document.getElementById('items')
 const itemsContainerEl = document.querySelector('.items-container');
 const menuContainerEL = document.querySelector('.menu-container')
+const dropContainerEl = document.querySelector('.dropdown-container')
+const dropListEl = document.querySelector('.dropdown-list')
+console.log('cartel',dropContainerEl  )
+console.log('cart',dropListEl)
+
 
 
 const products = [
@@ -107,7 +113,7 @@ renderMenuContainer(products);
 function onLoadGetCartNumbers(){
     let cartNumber = parseInt(localStorage.getItem('cartNumber'))
     if(cartNumber>=0){
-        cartItemEl.textContent = cartNumber; 
+        cartItemNoEl.textContent = cartNumber; 
     }
 } 
 
@@ -124,10 +130,10 @@ function addToCart(item){
 
     if(cartNumber){
         localStorage.setItem('cartNumber',cartNumber+1)
-        cartItemEl.textContent = cartNumber+1;
+        cartItemNoEl.textContent = cartNumber+1;
     }else{
     localStorage.setItem('cartNumber',1);
-    cartItemEl.textContent = 1;
+    cartItemNoEl.textContent = 1;
     }
 
    
@@ -355,3 +361,45 @@ function updateQuantity(id,event){
     
 }
 
+//  rendering the dropdown cart items 
+cartItemNoEl.addEventListener('click',()=>{
+    renderDropDown()
+    console.log("hello")
+})
+
+function renderDropDown(){
+    let cartItems =JSON.parse( localStorage.getItem('cartItem'));
+
+    console.log("cartItem",cartItems)
+    
+
+    let dropdownEl = document.createElement('div')
+    dropdownEl.classList.add('dropdown')
+   
+     dropdownEl.innerHTML =`
+
+     <div class="dropdown-image">
+         <img src="./assets/black shirt.png" alt="">
+     </div>
+     <div class='dropdown-title'>
+     <h3>Black Shirt</h3>
+     <h4>1 X $15</h4>
+ </div> 
+ <div class="quantity">
+     <ion-icon name="caret-forward-circle-outline" ></ion-icon>
+      1
+     <ion-icon name="caret-back-circle-outline" ></ion-icon>
+     </div>
+
+     <div class="remove">
+         <ion-icon name="close-circle-outline" class="close"></ion-icon>
+          </div>
+
+          
+
+     `
+    
+ dropListEl.appendChild(dropdownEl)
+ 
+
+}
