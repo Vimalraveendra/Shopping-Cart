@@ -246,7 +246,7 @@ function showCartItems(){
             itemsEl.innerHTML += `
             <div class ="products">
             <div class="product">
-           <ion-icon name="close-circle-outline" class="close" onclick=removeCartItems(event)></ion-icon>
+           <ion-icon name="close-circle-outline" class="close" onclick=removeCartItems(${item.id})></ion-icon>
             <img src="./assets/${item.tag}.png", alt="red-shirt">
             <h2 class="name">${item.name}</h2>
             </div>
@@ -274,20 +274,22 @@ function showCartItems(){
 }
 
 
-function removeCartItems(event){
-   
+function removeCartItems(id){
+  
     let items = [];
-    let element =event.target.parentNode.children[2].textContent;
+    // let element = event.target.parentNode.parentNode.children[1].children[0].textContent||event.target.parentNode.children[2].textContent;
+   
     let cartItems = JSON.parse(localStorage.getItem('cartItem'))
     let cartPrice = parseInt(localStorage.getItem('totalPrice'))
     let cartNumber = parseInt(localStorage.getItem('cartNumber'))
-    // when we click on the delete icon, removing that element
-    event.target.parentNode.parentNode.remove();
+    // // when we click on the delete icon, removing that element
+    // event.target.parentNode.parentNode.remove();
+
     // iterating through the cartItems received from the local
     // storage & filtering the item based on the condition & pushing
     //  that item into items array
     cartItems.forEach(item=>{
-        if(item.name!==element){
+        if(item.id!==id){
             items.push(item)
             
         }else{
@@ -372,6 +374,7 @@ cartItemNoEl.addEventListener('click',()=>{
 
 function renderDropDown(){
     const cartItems = JSON.parse(localStorage.getItem('cartItem'))
+    let cartPrice = localStorage.getItem('totalPrice')
        dropListEl.innerHTML="";
        if(cartItems.length>0){
         cartItems.forEach(item=>{
@@ -385,13 +388,13 @@ function renderDropDown(){
             <h4>${item.cartNo} X $${item.price}</h4>
          </div> 
          <div class="quantity">
-            <ion-icon name="caret-forward-circle-outline" ></ion-icon>
+            <ion-icon name="caret-forward-circle-outline" onclick=updateQuantity((${item.id}),event) ></ion-icon>
              ${item.cartNo}
-            <ion-icon name="caret-back-circle-outline" ></ion-icon>
+            <ion-icon name="caret-back-circle-outline" onclick=updateQuantity((${item.id}),event) ></ion-icon>
             </div>
          
             <div class="remove">
-                <ion-icon name="close-circle-outline" class="close"></ion-icon>
+                <ion-icon name="close-circle-outline" class="close" onclick=removeCartItems(${item.id})></ion-icon>
                  </div>
          
              </div>    
@@ -406,7 +409,7 @@ function renderDropDown(){
       totalContainerEl.innerHTML=`
       <button class="dropdown-btn" onClick="location.href='cartItem.html'">View All</button>
     <div class='total-amount'>
-        <h5><span>Total Amount:</span>$ 54,00 </h5>
+        <h5><span>Total Amount:</span> $${cartPrice},00</h5>
         
     </div>
       `
