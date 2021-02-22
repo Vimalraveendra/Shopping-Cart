@@ -67,7 +67,7 @@ nav li a {
 .cart span {
   position: absolute;
   top: 0.65rem;
-  left: 0.45rem;
+  left: 0.35rem;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -242,10 +242,10 @@ nav h2 a {
   padding: 0.5rem;
   position: absolute;
   top: 3.3rem;
-  right: 2.5rem;
+  right: 1.5rem;
   width: 320px;
-  height: 350px;
-  /* opacity: 0; */
+  height: 340px;
+  opacity: 0;
   margin-bottom: 1rem;
 }
 /* .dropdown-container:hover {
@@ -311,6 +311,10 @@ nav h2 a {
   border: none;
   cursor: pointer;
 }
+.total-container {
+  display: flex;
+  flex-direction: column;
+}
 .total-amount {
   border-top: 1px solid #ddd;
   margin-top: 0.45rem;
@@ -323,6 +327,17 @@ nav h2 a {
   margin: 0;
   padding-top: 0.5rem;
   font-size: 1rem;
+}
+
+.display {
+  opacity: 1;
+}
+
+.empty {
+  font-size: 1.15rem;
+  padding: 2rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 400px) {
