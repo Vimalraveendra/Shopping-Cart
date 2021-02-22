@@ -6,14 +6,14 @@ const itemsContainerEl = document.querySelector('.items-container');
 const menuContainerEL = document.querySelector('.menu-container')
 const dropContainerEl = document.querySelector('.dropdown-container')
 const dropListEl = document.querySelector('.dropdown-list')
-console.log('cartel',dropContainerEl  )
-console.log('cart',dropListEl)
+const totalContainerEl = document.querySelector('.total-container')
+
 
 
 
 const products = [
     {   id:1,
-        name:'Black T-Shirt',
+        name:'Black T-Shirt',   
         tag:'black t-shirt',
         price:12,
         cartNo:0
@@ -99,6 +99,7 @@ for(let i=0;i<cartEle.length;i++){
     cartEle[i].addEventListener('click',()=>{
         addToCart(products[i])
         totalPrice(products[i])
+      
     })
 }
     
@@ -142,7 +143,6 @@ function addToCart(item){
 }
 
 function setItemToLs(item){
-    console.log("item",item)
 
 // checking items already persist in the local storage
 // and converting JSON format to a object format
@@ -363,43 +363,55 @@ function updateQuantity(id,event){
 
 //  rendering the dropdown cart items 
 cartItemNoEl.addEventListener('click',()=>{
-    renderDropDown()
-    console.log("hello")
+    if(menuContainerEL){
+    dropContainerEl.classList.toggle('display')
+    renderDropDown();
+    }
+   
 })
 
 function renderDropDown(){
-    let cartItems =JSON.parse( localStorage.getItem('cartItem'));
-
-    console.log("cartItem",cartItems)
-    
-
-    let dropdownEl = document.createElement('div')
-    dropdownEl.classList.add('dropdown')
-   
-     dropdownEl.innerHTML =`
-
-     <div class="dropdown-image">
-         <img src="./assets/black shirt.png" alt="">
-     </div>
-     <div class='dropdown-title'>
-     <h3>Black Shirt</h3>
-     <h4>1 X $15</h4>
- </div> 
- <div class="quantity">
-     <ion-icon name="caret-forward-circle-outline" ></ion-icon>
-      1
-     <ion-icon name="caret-back-circle-outline" ></ion-icon>
-     </div>
-
-     <div class="remove">
-         <ion-icon name="close-circle-outline" class="close"></ion-icon>
-          </div>
-
-          
-
-     `
-    
- dropListEl.appendChild(dropdownEl)
- 
+    const cartItems = JSON.parse(localStorage.getItem('cartItem'))
+       dropListEl.innerHTML="";
+       if(cartItems.length>0){
+        cartItems.forEach(item=>{
+            dropListEl.innerHTML +=`
+            <div class ='dropdown'>
+            <div class="dropdown-image">
+                <img src="./assets/${item.tag}.png" alt="">
+            </div>
+            <div class='dropdown-title'>
+            <h3>${item.name}</h3>
+            <h4>${item.cartNo} X $${item.price}</h4>
+         </div> 
+         <div class="quantity">
+            <ion-icon name="caret-forward-circle-outline" ></ion-icon>
+             ${item.cartNo}
+            <ion-icon name="caret-back-circle-outline" ></ion-icon>
+            </div>
+         
+            <div class="remove">
+                <ion-icon name="close-circle-outline" class="close"></ion-icon>
+                 </div>
+         
+             </div>    
+         
+            `
+        })
+    }else{
+        dropListEl.innerHTML =`
+        <div class="empty">You cart is empty</div>
+        `
+    }
+      totalContainerEl.innerHTML=`
+      <button class="dropdown-btn" onClick="location.href='cartItem.html'">View All</button>
+    <div class='total-amount'>
+        <h5><span>Total Amount:</span>$ 54,00 </h5>
+        
+    </div>
+      `
 
 }
+
+
+    
