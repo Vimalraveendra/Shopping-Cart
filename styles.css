@@ -245,12 +245,12 @@ nav h2 a {
   right: 2.5rem;
   width: 320px;
   height: 350px;
-  opacity: 0;
+  /* opacity: 0; */
   margin-bottom: 1rem;
 }
-.dropdown-container:hover {
+/* .dropdown-container:hover {
   opacity: 1;
-}
+} */
 
 .dropdown-list {
   height: 260px;
