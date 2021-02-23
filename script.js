@@ -375,6 +375,7 @@ cartItemNoEl.addEventListener('click',()=>{
 function renderDropDown(){
     const cartItems = JSON.parse(localStorage.getItem('cartItem'))
     let cartPrice = localStorage.getItem('totalPrice')
+     dropListEl.classList.toggle('animate')
        dropListEl.innerHTML="";
        if(cartItems.length>0){
         cartItems.forEach(item=>{
@@ -403,7 +404,7 @@ function renderDropDown(){
         })
     }else{
         dropListEl.innerHTML =`
-        <div class="empty">You cart is empty</div>
+        <div class="empty">Your cart is empty</div>
         `
     }
       totalContainerEl.innerHTML=`

@@ -236,6 +236,7 @@ nav h2 a {
 }
 
 /* drop down */
+/*  dropdown hidden by default by setting opacity to 0 */
 .dropdown-container {
   background-color: #fff;
   box-shadow: 2px 2px 5px #000;
@@ -244,19 +245,20 @@ nav h2 a {
   top: 3.3rem;
   right: 1.5rem;
   width: 320px;
-  height: 340px;
+  height: 0px;
   opacity: 0;
   margin-bottom: 1rem;
+  transition: 0.3s;
+  transition: all 1s ease-in;
 }
-/* .dropdown-container:hover {
-  opacity: 1;
-} */
 
+/* added animation to dropdown list by setting height is to zero & transition */
 .dropdown-list {
-  height: 260px;
+  height: 0px;
   display: flex;
   flex-direction: column;
   overflow: auto;
+  transition: all 1s ease-in;
 }
 .dropdown {
   display: flex;
@@ -315,6 +317,7 @@ nav h2 a {
   display: flex;
   flex-direction: column;
 }
+
 .total-amount {
   border-top: 1px solid #ddd;
   margin-top: 0.45rem;
@@ -330,8 +333,19 @@ nav h2 a {
   font-weight: bold;
 }
 
+/* show dropdown container by setting opacity to 1 */
 .display {
   opacity: 1;
+  height: 340px;
+  transition: 0.3s;
+}
+
+/* show dropdown-list by setting the height to 260px & the added transition to 
+show some animation
+ */
+.animate {
+  height: 260px;
+  transition: 0.3s;
 }
 
 .empty {
