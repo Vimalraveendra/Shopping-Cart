@@ -7,6 +7,8 @@ const menuContainerEL = document.querySelector('.menu-container')
 const dropContainerEl = document.querySelector('.dropdown-container')
 const dropListEl = document.querySelector('.dropdown-list')
 const totalContainerEl = document.querySelector('.total-container')
+const menu = document.getElementsByName("menu-outline")[0];
+const navEl = document.getElementsByTagName('nav')[0]
 
 
 
@@ -64,6 +66,19 @@ const products = [
 
 
 ]
+
+// This basically says ‘If there is no location hash, make the location hash #home.
+if(!location.hash){
+    location.hash="#home"
+}
+
+// we have an event listener, its a function which waits for events!
+//  In the event listener, we wait for a ‘hashchange’, which means that 
+// whenever the fragment identifier in the URL is changed, this function 
+// will then be fired up.
+window.addEventListener('hashchange',()=>{
+    console.log(location.hash)
+})
 
 // dynamically render the index.html items when the page loads
 
@@ -408,7 +423,7 @@ function renderDropDown(){
         `
     }
       totalContainerEl.innerHTML=`
-      <button class="dropdown-btn" onClick="location.href='cartItem.html'">View All</button>
+      <a class="dropdown-btn" href='#cart'>View All</a>
     <div class='total-amount'>
         <h5><span>Total Amount:</span> $${cartPrice},00</h5>
         
@@ -417,5 +432,11 @@ function renderDropDown(){
 
 }
 
+const displayDropdown = (event) => {
+event.preventDefault();
+console.log('hello')
+event.target === menu? navEl.classList.toggle('menu'): null;
+};
 
+menu.addEventListener("click", displayDropdown);
     
