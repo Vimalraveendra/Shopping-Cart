@@ -28,8 +28,13 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin: 1rem 2rem;
+  /* display: none; */
+
 }
 
+.list{
+  display: flex;
+}
 nav h2 {
   margin: 0;
   font-size: 1.5rem;
@@ -56,7 +61,7 @@ nav li a {
   text-decoration: none;
 }
 
-.cart a {
+.cart  {
   position: relative;
   cursor: pointer;
 }
@@ -67,7 +72,7 @@ nav li a {
 .cart span {
   position: absolute;
   top: 0.65rem;
-  left: 0.5rem;
+  left: 0.7rem;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -340,12 +345,27 @@ nav h2 a {
   transition: 0.3s;
 }
 
+
+
 /* show dropdown-list by setting the height to 260px & the added transition to 
 show some animation
  */
 .animate {
   height: 260px;
   transition: 0.3s;
+}
+
+.menu{
+  display: block;
+    width: 100%;
+    height: 400px;
+    background-color: black;
+    position: absolute;
+    left: -1.5rem;
+    right: .5rem;
+    top: 2.5rem;
+    
+  
 }
 
 .empty {
@@ -355,16 +375,49 @@ show some animation
   font-weight: 600;
 }
 
-@media screen and (max-width: 400px) {
+/* menu header */
+.menu-header {
+  display: none;
+}
+
+@media screen and (max-width: 750px) {
+  .items-container {
+    width: 500px;
+  }
+  .product img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media screen and (max-width: 550px) {
   /* body {
     background-color: lightgreen;
   } */
   nav {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 1rem 2rem;
+  }
+
+  .menu-header {
+    display: block;
+    background: #272722;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.25rem;
+  }
+
+  .menu-header p {
+    margin: 0;
+  }
+  .menu-header ion-icon {
+    font-size: 2rem;
   }
 
   .image {
@@ -380,4 +433,14 @@ show some animation
   nav h2 {
     font-size: 1.25rem;
   }
+
+  .items-container {
+   max-width: 100%;
+  }
+  .product img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+}
+
 }
