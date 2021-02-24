@@ -10,7 +10,8 @@ const totalContainerEl = document.querySelector('.total-container')
 const menu = document.getElementsByName("menu-outline")[0];
 const navEl = document.getElementsByTagName('nav')[0]
 
-
+console.log('cat',cartItemNoEl.textContent)
+console.log('cart',cartItemEl.textContent)
 
 
 const products = [
@@ -67,10 +68,11 @@ const products = [
 
 ]
 
-// This basically says ‘If there is no location hash, make the location hash #home.
-if(!location.hash){
-    location.hash="#home"
-}
+
+// This basically says ‘If there is no fragment identifier, make the location hash #home.
+// if(!location.hash){
+//     location.hash="#home"
+// }
 
 // we have an event listener, its a function which waits for events!
 //  In the event listener, we wait for a ‘hashchange’, which means that 
@@ -423,7 +425,7 @@ function renderDropDown(){
         `
     }
       totalContainerEl.innerHTML=`
-      <a class="dropdown-btn" href='#cart'>View All</a>
+      <button class="dropdown-btn" onclick ="location.href='cartItem.html'">View All</button>
     <div class='total-amount'>
         <h5><span>Total Amount:</span> $${cartPrice},00</h5>
         
@@ -432,10 +434,15 @@ function renderDropDown(){
 
 }
 
+window .addEventListener('resize',()=>{
+    if(window.innerWidth>=550 && navEl.classList[1] ==='menu'){
+        navEl.classList.toggle('menu')
+    }
+})
+
 const displayDropdown = (event) => {
 event.preventDefault();
-console.log('hello')
-event.target === menu? navEl.classList.toggle('menu'): null;
+event.target === menu? navEl.classList.toggle('menu'):null;
 };
 
 menu.addEventListener("click", displayDropdown);
